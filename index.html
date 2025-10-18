@@ -94,6 +94,14 @@
   </div>
 </div>
 
+<!-- クラウド保存・読み込みボタン -->
+<div style="margin-top: 20px;">
+  <button id="cloudSaveBtn">☁️ クラウドに保存</button>
+  <button id="cloudLoadBtn">☁️ クラウドから読み込み</button>
+  <span id="cloudMsg" style="margin-left: 10px; color: gray;"></span>
+</div>
+
+
 <!-- 一覧 -->
 <div class="card">
   <h2>登録一覧</h2>
@@ -438,5 +446,47 @@ clearAllBtn.addEventListener("click", clearAll);
 applyQuizFilter();
 renderList();
 </script>
+
+<script>
+const API_BASE = "https://tango-apps2.vercel.app"; // ←あなたのVercel URLに変更！
+
+// クラウド保存機能
+async function saveToCloud() {
+  try {
+    const res = await fetch(`${API_BASE}/api/save`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ content: words }) // words は既存の単語配列
+    });
+    if (!res.ok) throw new Error(await res.text());
+    document.getElementById("cloudMsg").textContent = "✅ クラウドに保存しました（GitHubに反映済み）";
+  } catch (e) {
+    document.getElementById("cloudMsg").textContent = "❌ 保存に失敗しました：" + e.message;
+  }
+}
+
+// クラウド読み込み機能
+async function loadFromCloud() {
+  try {
+    const url = "https://raw.githubusercontent.com/kuribay14-web/Tango_apps2/main/data.json?ts=" + Date.now();
+    const res = await fetch(url);
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const data = await res.json();
+    if (!Array.isArray(data)) throw new Error("JSONが配列ではありません");
+    if (!confirm("クラウドのデータで上書きしますか？")) return;
+    words = data;
+    saveWords(words); // ←既存関数で localStorage に反映
+    applyQuizFilter();
+    applyListFilter();
+    document.getElementById("cloudMsg").textContent = "✅ クラウドから読み込みました";
+  } catch (e) {
+    document.getElementById("cloudMsg").textContent = "❌ 読み込みに失敗しました：" + e.message;
+  }
+}
+
+document.getElementById("cloudSaveBtn").addEventListener("click", saveToCloud);
+document.getElementById("cloudLoadBtn").addEventListener("click", loadFromCloud);
+</script>
+
 </body>
 </html>
