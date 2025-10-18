@@ -1,12 +1,507 @@
 [
   {
-    "word": "hello",
-    "meaning": "こんにちは",
+    "word": "improved working enviroment",
+    "meaning": "働く環境の改善",
+    "type": "言い回し"
+  },
+  {
+    "word": "roughly",
+    "meaning": "だいたい",
+    "type": "副詞"
+  },
+  {
+    "word": "thirtyish",
+    "meaning": "30くらい",
+    "type": "形容詞"
+  },
+  {
+    "word": "late-fourties",
+    "meaning": "40代後半",
+    "type": "形容詞"
+  },
+  {
+    "word": "tallish",
+    "meaning": "とても高い",
+    "type": "形容詞"
+  },
+  {
+    "word": "outgoing",
+    "meaning": "社交的",
+    "type": "形容詞"
+  },
+  {
+    "word": "attractive",
+    "meaning": "魅力的",
+    "type": "形容詞"
+  },
+  {
+    "word": "chubby",
+    "meaning": "ぽっちゃり",
+    "type": "形容詞"
+  },
+  {
+    "word": "vary",
+    "meaning": "多様に変化する",
+    "type": "動詞"
+  },
+  {
+    "word": "tolerate",
+    "meaning": "許容する",
+    "type": "動詞"
+  },
+  {
+    "word": "high tolerance",
+    "meaning": "高い耐性",
     "type": "名詞"
   },
   {
-    "word": "run",
-    "meaning": "走る",
+    "word": "precision",
+    "meaning": "正確さ",
+    "type": "名詞"
+  },
+  {
+    "word": "directness",
+    "meaning": "率直さ",
+    "type": "名詞"
+  },
+  {
+    "word": "intercultural",
+    "meaning": "異文化間の",
+    "type": "形容詞"
+  },
+  {
+    "word": "norm",
+    "meaning": "典型、規範",
+    "type": "名詞"
+  },
+  {
+    "word": "awareness",
+    "meaning": "自覚、気づき",
+    "type": "名詞"
+  },
+  {
+    "word": "weigh up pros and cons of",
+    "meaning": "メリデメを比較検討する",
     "type": "動詞"
+  },
+  {
+    "word": "talk A through B",
+    "meaning": "AにBを一通り説明する",
+    "type": "動詞"
+  },
+  {
+    "word": "You probably won't like this idea but",
+    "meaning": "この案は気に食わないだろうけど",
+    "type": "chunk"
+  },
+  {
+    "word": "get on to",
+    "meaning": "～の話題に入る",
+    "type": "動詞"
+  },
+  {
+    "word": "underlying causes",
+    "meaning": "根本原因",
+    "type": "名詞"
+  },
+  {
+    "word": "affect",
+    "meaning": "～に影響している",
+    "type": "動詞"
+  },
+  {
+    "word": "There's no getting away form it",
+    "meaning": "それは逃れられないことだ",
+    "type": "chunk"
+  },
+  {
+    "word": "attract",
+    "meaning": "惹きつける",
+    "type": "動詞"
+  },
+  {
+    "word": "Could I just say something here?",
+    "meaning": "ちょっといいですか？",
+    "type": "chunk"
+  },
+  {
+    "word": "obvious",
+    "meaning": "明らかな",
+    "type": "形容詞"
+  },
+  {
+    "word": "Apart form anything else",
+    "meaning": "何はともあれ",
+    "type": "chunk"
+  },
+  {
+    "word": "Can I suggest we come back to this point a bit later on?",
+    "meaning": "この話題は後で戻ってくる形でお願い",
+    "type": "chunk"
+  },
+  {
+    "word": "Either's fine.",
+    "meaning": "どっちでも大丈夫だよ",
+    "type": "chunk"
+  },
+  {
+    "word": "Enthusiasm",
+    "meaning": "熱意",
+    "type": "名詞"
+  },
+  {
+    "word": "bounce around new ideas",
+    "meaning": "新しいアイディアをあれこれ考える",
+    "type": "言い回し"
+  },
+  {
+    "word": "look beyond mistakes",
+    "meaning": "失敗の先を思い描く",
+    "type": "言い回し"
+  },
+  {
+    "word": "hit on a new idea",
+    "meaning": "新しいアイディアが浮かぶ",
+    "type": "言い回し"
+  },
+  {
+    "word": "come up with a new idea",
+    "meaning": "新しいアイディアが浮かぶ",
+    "type": "言い回し"
+  },
+  {
+    "word": "run into difficulty success waned",
+    "meaning": "成功率を下げる困難に直面する",
+    "type": "言い回し"
+  },
+  {
+    "word": "try things out",
+    "meaning": "（実験的に）試してみる",
+    "type": "言い回し"
+  },
+  {
+    "word": "figure out",
+    "meaning": "探し出す",
+    "type": "言い回し"
+  },
+  {
+    "word": "cut into the bottom line",
+    "meaning": "最終的な利益を減らす",
+    "type": "言い回し"
+  },
+  {
+    "word": "undergo change",
+    "meaning": "変化する、移り変わる",
+    "type": "言い回し"
+  },
+  {
+    "word": "shift emphasis to/from",
+    "meaning": "力点を移す、転換する",
+    "type": "言い回し"
+  },
+  {
+    "word": "boost earnings",
+    "meaning": "利益を押し上げる",
+    "type": "言い回し"
+  },
+  {
+    "word": "tolerate mistakes",
+    "meaning": "失敗を容認する（寛容に接する）",
+    "type": "言い回し"
+  },
+  {
+    "word": "cause stir",
+    "meaning": "センセーション・騒ぎを巻き起こす",
+    "type": "言い回し"
+  },
+  {
+    "word": "control costs",
+    "meaning": "コストをコントロールする",
+    "type": "言い回し"
+  },
+  {
+    "word": "outperform competition",
+    "meaning": "競合に勝つ",
+    "type": "言い回し"
+  },
+  {
+    "word": "outperform expectation",
+    "meaning": "期待を上回る",
+    "type": "言い回し"
+  },
+  {
+    "word": "reignite",
+    "meaning": "再燃させる",
+    "type": "言い回し"
+  },
+  {
+    "word": "get in the way of real invention",
+    "meaning": "本当の発明の妨げになる",
+    "type": "言い回し"
+  },
+  {
+    "word": "address employee dissatisfaction",
+    "meaning": "従業員の不満に本気で取組む",
+    "type": "言い回し"
+  },
+  {
+    "word": "fuse corporate culture and practice",
+    "meaning": "企業文化と企業活動を融和させる",
+    "type": "言い回し"
+  },
+  {
+    "word": "after observing their approach",
+    "meaning": "彼らのアプローチを観察した上で",
+    "type": "言い回し"
+  },
+  {
+    "word": "come to fruition",
+    "meaning": "実を結ぶ",
+    "type": "言い回し"
+  },
+  {
+    "word": "get off the ground",
+    "meaning": "動き出す、始動する",
+    "type": "言い回し"
+  },
+  {
+    "word": "get back on track",
+    "meaning": "再び軌道に乗る",
+    "type": "言い回し"
+  },
+  {
+    "word": "think outside the box",
+    "meaning": "型にはまらずに考える",
+    "type": "言い回し"
+  },
+  {
+    "word": "fall by the wayside",
+    "meaning": "途中で挫折する",
+    "type": "言い回し"
+  },
+  {
+    "word": "stay ahead of the game",
+    "meaning": "有利な状態を継続する",
+    "type": "言い回し"
+  },
+  {
+    "word": "vary depending on",
+    "meaning": "によって変化する",
+    "type": "言い回し"
+  },
+  {
+    "word": "dissonance",
+    "meaning": "不協和音",
+    "type": "名詞"
+  },
+  {
+    "word": "As such,",
+    "meaning": "そういうわけで",
+    "type": "言い回し"
+  },
+  {
+    "word": "point to",
+    "meaning": "を示している",
+    "type": "動詞"
+  },
+  {
+    "word": "take into account",
+    "meaning": "考慮する",
+    "type": "動詞"
+  },
+  {
+    "word": "emphasis on extreme precision",
+    "meaning": "極端に精度に力点を置くこと",
+    "type": "言い回し"
+  },
+  {
+    "word": "interfere with their operation",
+    "meaning": "オペレーションを妨げる",
+    "type": "言い回し"
+  },
+  {
+    "word": "result in",
+    "meaning": "に繋がる",
+    "type": "動詞"
+  },
+  {
+    "word": "lean",
+    "meaning": "引き締まった、無駄のない",
+    "type": "形容詞"
+  },
+  {
+    "word": "stifle creativity",
+    "meaning": "創造性を殺す",
+    "type": "言い回し"
+  },
+  {
+    "word": "go down the rabbit hole",
+    "meaning": "泥沼にハマる",
+    "type": "言い回し"
+  },
+  {
+    "word": "desire for approval",
+    "meaning": "承認欲求",
+    "type": "名詞"
+  },
+  {
+    "word": "phony",
+    "meaning": "ニセモノ（=fake）",
+    "type": "名詞"
+  },
+  {
+    "word": "be in the moment",
+    "meaning": "没頭する",
+    "type": "言い回し"
+  },
+  {
+    "word": "ball and chain",
+    "meaning": "足かせ",
+    "type": "名詞"
+  },
+  {
+    "word": "stay in touch",
+    "meaning": "連絡を取り合う",
+    "type": "動詞"
+  },
+  {
+    "word": "collocate",
+    "meaning": "並べる",
+    "type": "動詞"
+  },
+  {
+    "word": "tidy up",
+    "meaning": "片づける",
+    "type": "動詞"
+  },
+  {
+    "word": "messy",
+    "meaning": "散らかっている",
+    "type": "形容詞"
+  },
+  {
+    "word": "butter someone up",
+    "meaning": "お世辞を言う、おだてる",
+    "type": "動詞"
+  },
+  {
+    "word": "absenteeism",
+    "meaning": "常習欠勤",
+    "type": "名詞"
+  },
+  {
+    "word": "presenteeism",
+    "meaning": "病気でも出勤しちゃう状態",
+    "type": "名詞"
+  },
+  {
+    "word": "controversial",
+    "meaning": "物議を醸す",
+    "type": "形容詞"
+  },
+  {
+    "word": "chuckle",
+    "meaning": "くすくす笑いする",
+    "type": "動詞"
+  },
+  {
+    "word": "guffaw",
+    "meaning": "大笑いする",
+    "type": "動詞"
+  },
+  {
+    "word": "synonym",
+    "meaning": "同義語",
+    "type": "名詞"
+  },
+  {
+    "word": "Ferris wheel",
+    "meaning": "観覧車",
+    "type": "名詞"
+  },
+  {
+    "word": "nevertheless",
+    "meaning": "しかしながら（=However）",
+    "type": "接続詞"
+  },
+  {
+    "word": "amphibian",
+    "meaning": "両生類",
+    "type": "名詞"
+  },
+  {
+    "word": "astronaut",
+    "meaning": "宇宙飛行士",
+    "type": "名詞"
+  },
+  {
+    "word": "a blessing in disguise",
+    "meaning": "不幸中の幸い",
+    "type": "言い回し"
+  },
+  {
+    "word": "genuinely",
+    "meaning": "本当に",
+    "type": "副詞"
+  },
+  {
+    "word": "charitable",
+    "meaning": "慈善的な",
+    "type": "形容詞"
+  },
+  {
+    "word": "hypocritical",
+    "meaning": "偽善的な",
+    "type": "形容詞"
+  },
+  {
+    "word": "sporadic",
+    "meaning": "散発的な",
+    "type": "形容詞"
+  },
+  {
+    "word": "realistically",
+    "meaning": "現実的には",
+    "type": "副詞"
+  },
+  {
+    "word": "obsolete",
+    "meaning": "時代遅れの、廃れた",
+    "type": "形容詞"
+  },
+  {
+    "word": "I should also say that",
+    "meaning": "と私も言わせていただく",
+    "type": "言い回し"
+  },
+  {
+    "word": "move into the area of",
+    "meaning": "の領域に進出する",
+    "type": "言い回し"
+  },
+  {
+    "word": "We'd pay to make sure",
+    "meaning": "～を確実するためにお金を使う",
+    "type": "言い回し"
+  },
+  {
+    "word": "it's well-run",
+    "meaning": "うまく運営される",
+    "type": "言い回し"
+  },
+  {
+    "word": "I can't help wondering whether",
+    "meaning": "～かどうかを疑わざるをえない",
+    "type": "言い回し"
+  },
+  {
+    "word": "We'd need to do a lot more research",
+    "meaning": "もっと多くの～が必要である",
+    "type": "言い回し"
+  },
+  {
+    "word": "Can you be more specific?",
+    "meaning": "もっと具体的にお願いします",
+    "type": "言い回し"
   }
 ]
