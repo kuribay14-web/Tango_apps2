@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "word": "hello",
+    "meaning": "こんにちは",
+    "type": "名詞"
+  },
+  {
+    "word": "run",
+    "meaning": "走る",
+    "type": "動詞"
+  }
+]
