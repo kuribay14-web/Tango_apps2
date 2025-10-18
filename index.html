@@ -19,6 +19,7 @@
   button:active { background:#e7e7e7; }
   .btn-primary { background:#2b7cff; border-color:#2b7cff; color:#fff; }
   .btn-danger { background:#ff4d4f; border-color:#ff4d4f; color:#fff; }
+  .small { padding:6px 10px; font-size:14px; }
   #word { font-size:2rem; font-weight:700; min-height:48px; text-align:center; word-break:break-word; }
   #meaning { margin-top:8px; font-size:1.2rem; color:#555; text-align:center; display:none; word-break:break-word; }
   #noWords { color:#d33; text-align:center; margin-top:10px; }
@@ -88,8 +89,16 @@
       </select>
     </div>
   </div>
-  <div class="controls" style="margin-top:10px;">
+
+  <div class="controls" style="margin-top:10px; display:flex; align-items:center; gap:10px;">
     <button id="addBtn" class="btn-primary">登録する</button>
+
+    <!-- 自動クラウド保存トグル -->
+    <label style="display:inline-flex; align-items:center; gap:6px;">
+      <input id="autoCloudSync" type="checkbox" checked>
+      自動でクラウド保存
+    </label>
+
     <span id="addMsg" class="muted"></span>
   </div>
 </div>
@@ -100,7 +109,6 @@
   <button id="cloudLoadBtn">☁️ クラウドから読み込み</button>
   <span id="cloudMsg" style="margin-left: 10px; color: gray;"></span>
 </div>
-
 
 <!-- 一覧 -->
 <div class="card">
@@ -138,7 +146,7 @@
           <th style="min-width:180px;">英語</th>
           <th style="min-width:220px;">日本語</th>
           <th style="min-width:110px;">品詞</th>
-          <th style="min-width:80px;">操作</th>
+          <th style="min-width:120px;">操作</th>
         </tr>
       </thead>
       <tbody id="listBody"></tbody>
@@ -147,7 +155,7 @@
 </div>
 
 <script>
-// ====== 初期データ（必要に応じて編集可） ======
+// ====== 初期データ ======
 const SEED = [
   { word: "roughly", meaning: "だいたい", type: "副詞" },
   { word: "thirtyish", meaning: "30くらい", type: "形容詞" },
@@ -259,14 +267,12 @@ function loadWords() {
     const raw = localStorage.getItem(LS_KEY);
     if (!raw) return [...SEED];
     const parsed = JSON.parse(raw);
-    // 配列でない/欠損時のフェイルセーフ
     if (!Array.isArray(parsed)) return [...SEED];
     return parsed;
   } catch(e) {
     return [...SEED];
   }
 }
-
 function saveWords(arr) {
   localStorage.setItem(LS_KEY, JSON.stringify(arr));
 }
@@ -301,7 +307,6 @@ function pickRandom(list) {
   const i = Math.floor(Math.random() * list.length);
   return list[i];
 }
-
 function showWord() {
   if (!currentWord) return;
   wordEl.textContent = currentWord.word;
@@ -309,13 +314,11 @@ function showWord() {
   meaningEl.textContent = "";
   noWordsEl.textContent = "";
 }
-
 function showMeaning() {
   if (!currentWord) return;
   meaningEl.style.display = "block";
   meaningEl.textContent = `${currentWord.meaning} (${currentWord.type})`;
 }
-
 function applyQuizFilter() {
   const type = filterEl.value;
   currentList = type ? words.filter(w => w.type === type) : [...words];
@@ -331,71 +334,33 @@ function applyQuizFilter() {
   }
 }
 
-// ====== 登録 ======
-function addEntry() {
-  const en = enInput.value.trim();
-  const jp = jpInput.value.trim();
-  const tp = typeInput.value;
-
-  if (!en || !jp || !tp) {
-    addMsg.textContent = "英語・日本語・品詞はすべて必須です。";
-    return;
-  }
-  // 重複チェック（英語×日本語×品詞）
-  const exists = words.some(w => w.word === en && w.meaning === jp && w.type === tp);
-  if (exists) {
-    addMsg.textContent = "同一のレコードが既に存在します。";
-    return;
-  }
-
-  const newItem = { word: en, meaning: jp, type: tp };
-  words.unshift(newItem);
-  saveWords(words);
-  addMsg.textContent = "登録しました。";
-
-  // 入力クリア
-  enInput.value = "";
-  jpInput.value = "";
-  typeInput.value = "";
-
-  // 出題・一覧の反映
-  applyQuizFilter();
-  renderList();
-  // 一覧の検索条件があれば適用
-  applyListFilter();
+// ====== ユーティリティ ======
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, s => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[s]));
 }
 
-// ====== 一覧描画 ======
+// ====== 一覧描画（編集ボタン付き） ======
 function renderList(data = words) {
   listBody.innerHTML = "";
   if (data.length === 0) {
     listBody.innerHTML = `<tr><td colspan="4" class="muted">データがありません。</td></tr>`;
     return;
   }
-  data.forEach((w, idx) => {
+  data.forEach((w) => {
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td>${escapeHtml(w.word)}</td>
       <td>${escapeHtml(w.meaning)}</td>
       <td>${escapeHtml(w.type)}</td>
-      <td><button data-index="${idx}" class="btn-danger small">削除</button></td>
+      <td>
+        <button class="small" data-act="edit">編集</button>
+        <button class="btn-danger small" data-act="del">削除</button>
+      </td>
     `;
-    // 削除はインデックス特定のため、実データの位置を埋め込む
-    const btn = tr.querySelector("button");
-    btn.addEventListener("click", () => deleteEntry(w));
+    tr.querySelector('[data-act="edit"]').addEventListener("click", () => startEdit(w));
+    tr.querySelector('[data-act="del"]').addEventListener("click",  () => deleteEntry(w));
     listBody.appendChild(tr);
   });
-}
-
-function deleteEntry(item) {
-  if (!confirm(`削除しますか？\n英語: ${item.word}\n日本語: ${item.meaning}`)) return;
-  const i = words.findIndex(w => w.word === item.word && w.meaning === item.meaning && w.type === item.type);
-  if (i >= 0) {
-    words.splice(i, 1);
-    saveWords(words);
-    applyQuizFilter();
-    applyListFilter();
-  }
 }
 
 // ====== 一覧フィルタ（検索＋品詞） ======
@@ -407,9 +372,124 @@ function applyListFilter() {
   if (q) data = data.filter(w =>
     (w.word || "").toLowerCase().includes(q) ||
     (w.meaning || "").toLowerCase().includes(q) ||
-    (w.meaning || "").includes(searchInput.value) // 日本語は大文字小文字関係ないので追加
+    (w.meaning || "").includes(searchInput.value)
   );
   renderList(data);
+}
+
+// ====== 自動クラウド保存（デバウンス） ======
+let cloudSaveTimer = null;
+let cloudSaving = false;
+function scheduleCloudSave() {
+  const auto = document.getElementById("autoCloudSync");
+  if (!auto || !auto.checked) return;
+  if (cloudSaveTimer) clearTimeout(cloudSaveTimer);
+  cloudSaveTimer = setTimeout(async () => {
+    if (cloudSaving) return;
+    try {
+      cloudSaving = true;
+      await saveToCloud();
+    } finally {
+      cloudSaving = false;
+    }
+  }, 2000);
+}
+
+// ====== 編集サポート ======
+let editingKey = null;
+function makeKey(item) { return `${item.word}__${item.meaning}__${item.type}`; }
+
+function startEdit(item) {
+  enInput.value = item.word;
+  jpInput.value = item.meaning;
+  typeInput.value = item.type;
+  editingKey = makeKey(item);
+  addMsg.textContent = "編集中です。内容を変更して「更新する」を押してください。";
+  document.getElementById("addBtn").textContent = "更新する";
+
+  if (!document.getElementById("cancelEditBtn")) {
+    const cancelBtn = document.createElement("button");
+    cancelBtn.id = "cancelEditBtn";
+    cancelBtn.textContent = "キャンセル";
+    cancelBtn.style.marginLeft = "8px";
+    cancelBtn.addEventListener("click", cancelEdit);
+    addBtn.insertAdjacentElement("afterend", cancelBtn);
+  }
+}
+function cancelEdit() {
+  editingKey = null;
+  enInput.value = "";
+  jpInput.value = "";
+  typeInput.value = "";
+  addMsg.textContent = "編集をキャンセルしました。";
+  document.getElementById("addBtn").textContent = "登録する";
+  document.getElementById("cancelEditBtn")?.remove();
+}
+
+// ====== 登録・更新 ======
+function addOrUpdateEntry() {
+  const en = enInput.value.trim();
+  const jp = jpInput.value.trim();
+  const tp = typeInput.value;
+  if (!en || !jp || !tp) {
+    addMsg.textContent = "英語・日本語・品詞はすべて必須です。";
+    return;
+  }
+  const newItem = { word: en, meaning: jp, type: tp };
+
+  if (editingKey === null) {
+    // 新規：重複チェック
+    const exists = words.some(w => w.word === en && w.meaning === jp && w.type === tp);
+    if (exists) { addMsg.textContent = "同一のレコードが既に存在します。"; return; }
+    words.unshift(newItem);
+    addMsg.textContent = "登録しました。";
+  } else {
+    // 更新：自分以外と重複しないか確認
+    const idx = words.findIndex(w => makeKey(w) === editingKey);
+    if (idx === -1) { addMsg.textContent = "編集対象が見つかりませんでした。"; return; }
+    const dup = words.some((w, i) => i !== idx && w.word === en && w.meaning === jp && w.type === tp);
+    if (dup) { addMsg.textContent = "更新後の内容が既存レコードと重複します。"; return; }
+    words[idx] = newItem;
+    addMsg.textContent = "更新しました。";
+    editingKey = null;
+    document.getElementById("addBtn").textContent = "登録する";
+    document.getElementById("cancelEditBtn")?.remove();
+  }
+
+  saveWords(words);
+
+  // 入力クリア
+  enInput.value = "";
+  jpInput.value = "";
+  typeInput.value = "";
+
+  // UI更新
+  applyQuizFilter();
+  applyListFilter();
+
+  // UI更新のあとに自動保存
+  scheduleCloudSave();
+}
+
+// ====== 削除 ======
+function deleteEntry(item) {
+  if (!confirm(`削除しますか？\n英語: ${item.word}\n日本語: ${item.meaning}`)) return;
+  const i = words.findIndex(w => makeKey(w) === makeKey(item));
+  if (i >= 0) {
+    words.splice(i, 1);
+    saveWords(words);
+
+    if (editingKey && editingKey === makeKey(item)) {
+      cancelEdit(); // 編集中の対象を消した場合は解除
+    }
+
+    // UI更新
+    applyQuizFilter();
+    applyListFilter();
+
+    // UI更新のあとに自動保存
+    scheduleCloudSave();
+  }
 }
 
 // ====== すべて削除（初期化） ======
@@ -419,13 +499,7 @@ function clearAll() {
   saveWords(words);
   applyQuizFilter();
   applyListFilter();
-}
-
-// ====== ユーティリティ ======
-function escapeHtml(str) {
-  return String(str).replace(/[&<>"']/g, s => ({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-  }[s]));
+  scheduleCloudSave(); // 初期化後も自動保存
 }
 
 // ====== イベント紐付け ======
@@ -437,7 +511,7 @@ nextBtn.addEventListener("click", () => {
 showBtn.addEventListener("click", showMeaning);
 filterEl.addEventListener("change", applyQuizFilter);
 
-addBtn.addEventListener("click", addEntry);
+addBtn.addEventListener("click", addOrUpdateEntry);
 searchInput.addEventListener("input", applyListFilter);
 listFilter.addEventListener("change", applyListFilter);
 clearAllBtn.addEventListener("click", clearAll);
@@ -448,7 +522,7 @@ renderList();
 </script>
 
 <script>
-const API_BASE = "https://tango-apps2.vercel.app"; // ←あなたのVercel URLに変更！
+const API_BASE = "https://tango-apps2.vercel.app"; // ←あなたのVercel URL
 
 // クラウド保存機能
 async function saveToCloud() {
@@ -456,7 +530,7 @@ async function saveToCloud() {
     const res = await fetch(`${API_BASE}/api/save`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ content: words }) // words は既存の単語配列
+      body: JSON.stringify({ content: words })
     });
     if (!res.ok) throw new Error(await res.text());
     document.getElementById("cloudMsg").textContent = "✅ クラウドに保存しました（GitHubに反映済み）";
@@ -475,7 +549,7 @@ async function loadFromCloud() {
     if (!Array.isArray(data)) throw new Error("JSONが配列ではありません");
     if (!confirm("クラウドのデータで上書きしますか？")) return;
     words = data;
-    saveWords(words); // ←既存関数で localStorage に反映
+    saveWords(words);
     applyQuizFilter();
     applyListFilter();
     document.getElementById("cloudMsg").textContent = "✅ クラウドから読み込みました";
@@ -483,7 +557,6 @@ async function loadFromCloud() {
     document.getElementById("cloudMsg").textContent = "❌ 読み込みに失敗しました：" + e.message;
   }
 }
-
 document.getElementById("cloudSaveBtn").addEventListener("click", saveToCloud);
 document.getElementById("cloudLoadBtn").addEventListener("click", loadFromCloud);
 </script>
