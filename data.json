@@ -1,5 +1,10 @@
 [
   {
+    "word": "you kind of look like XX",
+    "meaning": "なんかXXに似てるね",
+    "type": "chunk"
+  },
+  {
     "word": "come to think of it",
     "meaning": "そういえば",
     "type": "言い回し"
