@@ -1,5 +1,10 @@
 [
   {
+    "word": "the place was absolutely packed",
+    "meaning": "客席は超満席だった",
+    "type": "chunk"
+  },
+  {
     "word": "It was held at",
     "meaning": "...で開催された",
     "type": "言い回し"
