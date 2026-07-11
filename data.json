@@ -793,5 +793,160 @@
     "word": "Can you be more specific?",
     "meaning": "もっと具体的にお願いします",
     "type": "言い回し"
+  },
+  {
+    "word": "That's cool",
+    "meaning": "それいいね／かっこいいね",
+    "type": "相槌"
+  },
+  {
+    "word": "It's pretty cool",
+    "meaning": "なかなかいいね／結構いいね",
+    "type": "相槌"
+  },
+  {
+    "word": "Sounds great",
+    "meaning": "いいね／良さそうだね",
+    "type": "相槌"
+  },
+  {
+    "word": "It's fantastic, isn't it?",
+    "meaning": "本当に素晴らしいよね",
+    "type": "相槌"
+  },
+  {
+    "word": "Right",
+    "meaning": "そうだね／その通り",
+    "type": "相槌"
+  },
+  {
+    "word": "It's really interesting, isn't it?",
+    "meaning": "本当に面白いよね",
+    "type": "相槌"
+  },
+  {
+    "word": "That's good",
+    "meaning": "それは良かったね",
+    "type": "相槌"
+  },
+  {
+    "word": "That's very true",
+    "meaning": "本当にその通りだね",
+    "type": "相槌"
+  },
+  {
+    "word": "It's definitely true",
+    "meaning": "間違いなくその通りだね",
+    "type": "相槌"
+  },
+  {
+    "word": "That's correct",
+    "meaning": "その通りです／正解です",
+    "type": "相槌"
+  },
+  {
+    "word": "Exactly",
+    "meaning": "まさにその通り",
+    "type": "相槌"
+  },
+  {
+    "word": "I hope so",
+    "meaning": "そうだといいな",
+    "type": "相槌"
+  },
+  {
+    "word": "That's a waste",
+    "meaning": "もったいないね",
+    "type": "相槌"
+  },
+  {
+    "word": "That's a shame",
+    "meaning": "それは残念だね",
+    "type": "相槌"
+  },
+  {
+    "word": "I know the feeling",
+    "meaning": "その気持ち分かるよ",
+    "type": "相槌"
+  },
+  {
+    "word": "I can imagine",
+    "meaning": "想像できるよ／分かる気がするよ",
+    "type": "相槌"
+  },
+  {
+    "word": "I'm glad to hear that",
+    "meaning": "それを聞いて安心したよ／それは良かったね",
+    "type": "相槌"
+  },
+  {
+    "word": "I bet",
+    "meaning": "そうだろうね／きっとそうだね",
+    "type": "相槌"
+  },
+  {
+    "word": "It's a useful expression",
+    "meaning": "便利な表現だね",
+    "type": "相槌"
+  },
+  {
+    "word": "I'm gonna check it",
+    "meaning": "後で調べてみるよ",
+    "type": "相槌"
+  },
+  {
+    "word": "I'm gonna try it",
+    "meaning": "試してみるよ",
+    "type": "相槌"
+  },
+  {
+    "word": "I guess you could say that",
+    "meaning": "そう言えるかもしれないね",
+    "type": "相槌"
+  },
+  {
+    "word": "Absolutely",
+    "meaning": "本当にそう／もちろん",
+    "type": "相槌"
+  },
+  {
+    "word": "Thank you for that tip",
+    "meaning": "そのアドバイスありがとう",
+    "type": "相槌"
+  },
+  {
+    "word": "That's absurd",
+    "meaning": "それはばかげているね",
+    "type": "相槌"
+  },
+  {
+    "word": "That's a pity",
+    "meaning": "それは残念だね",
+    "type": "相槌"
+  },
+  {
+    "word": "You know a lot",
+    "meaning": "物知りだね",
+    "type": "相槌"
+  },
+  {
+    "word": "That shouldn't be a problem",
+    "meaning": "それは問題ないはずだよ",
+    "type": "相槌"
+  },
+  {
+    "word": "That must be rough",
+    "meaning": "それは大変そうだね",
+    "type": "相槌"
+  },
+  {
+    "word": "I was relieved to hear that",
+    "meaning": "それを聞いて安心したよ",
+    "type": "相槌"
+  },
+  {
+    "word": "I've just remembered",
+    "meaning": "今思い出した",
+    "type": "相槌"
   }
 ]
