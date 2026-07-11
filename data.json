@@ -1033,5 +1033,130 @@
     "word": "I'm looking forward to working with you",
     "meaning": "一緒に仕事をするのを楽しみにしています",
     "type": "挨拶"
+  },
+  {
+    "word": "Why do you think that is?",
+    "meaning": "なぜそうなのだと思いますか？",
+    "type": "問い掛け"
+  },
+  {
+    "word": "Why do you think so?",
+    "meaning": "なぜそう思うのですか？",
+    "type": "問い掛け"
+  },
+  {
+    "word": "What about you?",
+    "meaning": "あなたはどうですか？",
+    "type": "問い掛け"
+  },
+  {
+    "word": "How about yourself?",
+    "meaning": "あなた自身はどうですか？",
+    "type": "問い掛け"
+  },
+  {
+    "word": "Anything in particular?",
+    "meaning": "何か特にありますか？",
+    "type": "問い掛け"
+  },
+  {
+    "word": "What else do you like?",
+    "meaning": "ほかには何が好きですか？",
+    "type": "問い掛け"
+  },
+  {
+    "word": "How is it?",
+    "meaning": "それはどうですか？",
+    "type": "問い掛け"
+  },
+  {
+    "word": "How did you like it?",
+    "meaning": "それはどうでしたか？／気に入りましたか？",
+    "type": "問い掛け"
+  },
+  {
+    "word": "Which do you prefer?",
+    "meaning": "どちらのほうが好きですか？",
+    "type": "問い掛け"
+  },
+  {
+    "word": "When is it convenient for you?",
+    "meaning": "いつが都合いいですか？",
+    "type": "問い掛け"
+  },
+  {
+    "word": "What's the appeal?",
+    "meaning": "どこが魅力なのですか？",
+    "type": "問い掛け"
+  },
+  {
+    "word": "Do you happen to...?",
+    "meaning": "ひょっとして〜しますか？／〜をご存じですか？",
+    "type": "問い掛け"
+  },
+  {
+    "word": "What has become of...?",
+    "meaning": "〜はどうなりましたか？",
+    "type": "問い掛け"
+  },
+  {
+    "word": "Could you say that again?",
+    "meaning": "もう一度言っていただけますか？",
+    "type": "問い掛け"
+  },
+  {
+    "word": "What does XX mean?",
+    "meaning": "XXはどういう意味ですか？",
+    "type": "問い掛け"
+  },
+  {
+    "word": "How do you say XX in English?",
+    "meaning": "XXは英語で何と言いますか？",
+    "type": "問い掛け"
+  },
+  {
+    "word": "I don't get it",
+    "meaning": "理解できません／意味が分かりません",
+    "type": "問い掛け"
+  },
+  {
+    "word": "I'm lost",
+    "meaning": "話についていけません／何が何だか分かりません",
+    "type": "問い掛け"
+  },
+  {
+    "word": "What for?",
+    "meaning": "何のために？",
+    "type": "問い掛け"
+  },
+  {
+    "word": "Where to?",
+    "meaning": "どこへ？",
+    "type": "問い掛け"
+  },
+  {
+    "word": "What's the difference between A and B?",
+    "meaning": "AとBの違いは何ですか？",
+    "type": "問い掛け"
+  },
+  {
+    "word": "I'm confused",
+    "meaning": "混乱しています／よく分かりません",
+    "type": "問い掛け"
+  },
+  {
+    "word": "Could you explain that in more detail?",
+    "meaning": "それをもう少し詳しく説明していただけますか？",
+    "type": "問い掛け"
+  },
+  {
+    "word": "Could you elaborate on that?",
+    "meaning": "それについてもう少し詳しく説明していただけますか？",
+    "type": "問い掛け"
+  },
+  {
+    "word": "Could you be more specific about this?",
+    "meaning": "これについて、もう少し具体的に説明していただけますか？",
+    "type": "問い掛け"
   }
 ]
