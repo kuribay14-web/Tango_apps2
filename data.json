@@ -1168,5 +1168,195 @@
     "word": "Could you be more specific about this?",
     "meaning": "これについて、もう少し具体的に説明していただけますか？",
     "type": "問い掛け"
+  },
+  {
+    "word": "I think it...",
+    "meaning": "私は〜だと思います／ええと、たぶん〜です",
+    "type": "phrase"
+  },
+  {
+    "word": "First of all",
+    "meaning": "まず第一に／まずは",
+    "type": "phrase"
+  },
+  {
+    "word": "I mean",
+    "meaning": "つまり／私が言いたいのは",
+    "type": "phrase"
+  },
+  {
+    "word": "You know",
+    "meaning": "ほら／あのね／ご存じのとおり",
+    "type": "phrase"
+  },
+  {
+    "word": "Let me think",
+    "meaning": "ちょっと考えさせて",
+    "type": "phrase"
+  },
+  {
+    "word": "How can I put it?",
+    "meaning": "何と言えばいいかな？",
+    "type": "phrase"
+  },
+  {
+    "word": "What should I say?",
+    "meaning": "何と言えばいいかな？",
+    "type": "phrase"
+  },
+  {
+    "word": "It's like...",
+    "meaning": "〜みたいな感じです",
+    "type": "phrase"
+  },
+  {
+    "word": "Actually",
+    "meaning": "実は／実際には",
+    "type": "phrase"
+  },
+  {
+    "word": "Honestly",
+    "meaning": "正直に言うと",
+    "type": "phrase"
+  },
+  {
+    "word": "That's why",
+    "meaning": "だから／それが理由です",
+    "type": "phrase"
+  },
+  {
+    "word": "I just feel like...",
+    "meaning": "何となく〜な気がします",
+    "type": "phrase"
+  },
+  {
+    "word": "I can imagine",
+    "meaning": "想像できます／分かる気がします",
+    "type": "phrase"
+  },
+  {
+    "word": "That's a very difficult question",
+    "meaning": "それはとても難しい質問ですね",
+    "type": "phrase"
+  },
+  {
+    "word": "Which is the weird thing",
+    "meaning": "そこが不思議なところです",
+    "type": "phrase"
+  },
+  {
+    "word": "May I be frank?",
+    "meaning": "率直に言ってもいいですか？",
+    "type": "phrase"
+  },
+  {
+    "word": "Long story short",
+    "meaning": "手短に言うと／要するに",
+    "type": "phrase"
+  },
+  {
+    "word": "What's so interesting is that XX",
+    "meaning": "とても興味深いのはXXということです",
+    "type": "phrase"
+  },
+  {
+    "word": "Well, let's see",
+    "meaning": "ええと、そうですね",
+    "type": "phrase"
+  },
+  {
+    "word": "It's coming back to me",
+    "meaning": "だんだん思い出してきました",
+    "type": "phrase"
+  },
+  {
+    "word": "I don't know if this expression is right",
+    "meaning": "この表現が正しいか分かりません",
+    "type": "phrase"
+  },
+  {
+    "word": "Good question",
+    "meaning": "いい質問ですね",
+    "type": "phrase"
+  },
+  {
+    "word": "Oh, that's a hard one",
+    "meaning": "ああ、それは難しいですね",
+    "type": "phrase"
+  },
+  {
+    "word": "Let me think it over",
+    "meaning": "少し考えさせてください",
+    "type": "phrase"
+  },
+  {
+    "word": "What do you think about it?",
+    "meaning": "それについてどう思いますか？",
+    "type": "phrase"
+  },
+  {
+    "word": "How can I explain this?",
+    "meaning": "これはどう説明すればいいかな？",
+    "type": "phrase"
+  },
+  {
+    "word": "If I had to choose",
+    "meaning": "どちらか選ばなければならないなら",
+    "type": "phrase"
+  },
+  {
+    "word": "Or that sort of thing",
+    "meaning": "あるいはそのようなもの",
+    "type": "phrase"
+  },
+  {
+    "word": "And so on",
+    "meaning": "などなど／その他いろいろ",
+    "type": "phrase"
+  },
+  {
+    "word": "Kind of",
+    "meaning": "ちょっと／ある意味／〜のような",
+    "type": "phrase"
+  },
+  {
+    "word": "That kind of thing",
+    "meaning": "そういうこと／そういうもの",
+    "type": "phrase"
+  },
+  {
+    "word": "That kind of stuff",
+    "meaning": "そういう類いのこと／もの",
+    "type": "phrase"
+  },
+  {
+    "word": "Something like that",
+    "meaning": "そんな感じのもの／こと",
+    "type": "phrase"
+  },
+  {
+    "word": "Or whatever",
+    "meaning": "とか何とか／あるいは何でも",
+    "type": "phrase"
+  },
+  {
+    "word": "Or whatever you call it",
+    "meaning": "何と呼ぶにせよ／名前は何でもいいけれど",
+    "type": "phrase"
+  },
+  {
+    "word": "A certain XX",
+    "meaning": "ある特定のXX",
+    "type": "phrase"
+  },
+  {
+    "word": "Any one of XX",
+    "meaning": "XXのうちのどれか一つ",
+    "type": "phrase"
+  },
+  {
+    "word": "How can I say this in English?",
+    "meaning": "これは英語で何と言えばいいですか？",
+    "type": "phrase"
   }
 ]
