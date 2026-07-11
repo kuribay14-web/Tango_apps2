@@ -948,5 +948,90 @@
     "word": "I've just remembered",
     "meaning": "今思い出した",
     "type": "相槌"
+  },
+  {
+    "word": "How's it going?",
+    "meaning": "調子はどう？",
+    "type": "挨拶"
+  },
+  {
+    "word": "Doing all right",
+    "meaning": "まあまあだよ／元気にやってるよ",
+    "type": "挨拶"
+  },
+  {
+    "word": "Not bad, but I'm a little nervous",
+    "meaning": "悪くないけど、少し緊張しているよ",
+    "type": "挨拶"
+  },
+  {
+    "word": "I'm feeling a little down",
+    "meaning": "少し気分が落ち込んでいるよ",
+    "type": "挨拶"
+  },
+  {
+    "word": "Very nice to meet you",
+    "meaning": "お会いできてとてもうれしいです",
+    "type": "挨拶"
+  },
+  {
+    "word": "All right, thank you",
+    "meaning": "元気です、ありがとう",
+    "type": "挨拶"
+  },
+  {
+    "word": "Nice talking to you",
+    "meaning": "お話しできてよかったです",
+    "type": "挨拶"
+  },
+  {
+    "word": "Cheers",
+    "meaning": "ありがとう／乾杯／じゃあね",
+    "type": "挨拶"
+  },
+  {
+    "word": "Let's keep in touch",
+    "meaning": "これからも連絡を取り合いましょう",
+    "type": "挨拶"
+  },
+  {
+    "word": "I'm the same as usual",
+    "meaning": "いつもと変わらないよ",
+    "type": "挨拶"
+  },
+  {
+    "word": "I appreciate you talking to us",
+    "meaning": "私たちとお話しいただきありがとうございます",
+    "type": "挨拶"
+  },
+  {
+    "word": "Where will you move next?",
+    "meaning": "次はどこへ引っ越すのですか？",
+    "type": "挨拶"
+  },
+  {
+    "word": "How have you been?",
+    "meaning": "最近どうしていましたか？",
+    "type": "挨拶"
+  },
+  {
+    "word": "It's been a while",
+    "meaning": "お久しぶりです",
+    "type": "挨拶"
+  },
+  {
+    "word": "I believe this is the first time we've met",
+    "meaning": "お会いするのは今回が初めてだと思います",
+    "type": "挨拶"
+  },
+  {
+    "word": "We would like to ask for your advice",
+    "meaning": "あなたのアドバイスを伺いたいです",
+    "type": "挨拶"
+  },
+  {
+    "word": "I'm looking forward to working with you",
+    "meaning": "一緒に仕事をするのを楽しみにしています",
+    "type": "挨拶"
   }
 ]
