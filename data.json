@@ -1358,5 +1358,130 @@
     "word": "How can I say this in English?",
     "meaning": "これは英語で何と言えばいいですか？",
     "type": "phrase"
+  },
+  {
+    "word": "You can see...",
+    "meaning": "ご覧のとおり／〜が分かります",
+    "type": "phrase"
+  },
+  {
+    "word": "Let me ask you...",
+    "meaning": "あなたに質問させてください",
+    "type": "phrase"
+  },
+  {
+    "word": "I'm imagining that...",
+    "meaning": "〜なのではないかと想像しています",
+    "type": "phrase"
+  },
+  {
+    "word": "I used to...",
+    "meaning": "以前は〜していました",
+    "type": "phrase"
+  },
+  {
+    "word": "Maybe I'm wrong, but...",
+    "meaning": "間違っているかもしれませんが",
+    "type": "phrase"
+  },
+  {
+    "word": "I'm not sure, but...",
+    "meaning": "確信はありませんが",
+    "type": "phrase"
+  },
+  {
+    "word": "I'm not too confident, but...",
+    "meaning": "あまり自信はありませんが",
+    "type": "phrase"
+  },
+  {
+    "word": "Let's get started",
+    "meaning": "始めましょう",
+    "type": "phrase"
+  },
+  {
+    "word": "First, I'm going to talk about...",
+    "meaning": "まず、〜についてお話しします",
+    "type": "phrase"
+  },
+  {
+    "word": "I have divided my presentation into three sections",
+    "meaning": "私のプレゼンテーションは3つのセクションに分けています",
+    "type": "phrase"
+  },
+  {
+    "word": "To elaborate on this",
+    "meaning": "これについて詳しく説明すると",
+    "type": "phrase"
+  },
+  {
+    "word": "To expand on this idea",
+    "meaning": "この考えをさらに発展させると",
+    "type": "phrase"
+  },
+  {
+    "word": "As I said earlier",
+    "meaning": "先ほど申し上げたように",
+    "type": "phrase"
+  },
+  {
+    "word": "If you remember, I mentioned this before",
+    "meaning": "覚えていれば、以前これについて触れました",
+    "type": "phrase"
+  },
+  {
+    "word": "I'd now like to turn my attention to...",
+    "meaning": "次に〜に話を移したいと思います",
+    "type": "phrase"
+  },
+  {
+    "word": "Moving on...",
+    "meaning": "次に進みます／話を先に進めると",
+    "type": "phrase"
+  },
+  {
+    "word": "To sum up...",
+    "meaning": "要約すると／まとめると",
+    "type": "phrase"
+  },
+  {
+    "word": "In conclusion...",
+    "meaning": "結論として",
+    "type": "phrase"
+  },
+  {
+    "word": "As I got older",
+    "meaning": "年齢を重ねるにつれて",
+    "type": "phrase"
+  },
+  {
+    "word": "Not gonna lie",
+    "meaning": "正直に言うと／嘘をつかずに言えば",
+    "type": "phrase"
+  },
+  {
+    "word": "Let's call it a day",
+    "meaning": "今日はここまでにしましょう",
+    "type": "phrase"
+  },
+  {
+    "word": "I gotta go",
+    "meaning": "もう行かないと",
+    "type": "phrase"
+  },
+  {
+    "word": "That's the way I think of it",
+    "meaning": "私はそのように考えています",
+    "type": "phrase"
+  },
+  {
+    "word": "It's actually quite interesting",
+    "meaning": "実はかなり興味深いです",
+    "type": "phrase"
+  },
+  {
+    "word": "I'll let you know when it happens",
+    "meaning": "それが起きたら知らせます",
+    "type": "phrase"
   }
 ]
