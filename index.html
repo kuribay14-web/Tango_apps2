@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>単語帳アプリ（登録・一覧付き）</title>
+<title>単語帳アプリ（クラウド同期・起動時自動読込）</title>
 <style>
   body { font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
          max-width: 820px; margin: 24px auto; padding: 0 14px; background:#fafafa; color:#222; }
@@ -11,7 +11,7 @@
   h2 { margin: 18px 0 10px; }
   .card { background:#fff; border:1px solid #e6e6e6; border-radius:10px; padding:14px; margin-bottom:16px; box-shadow:0 1px 3px rgba(0,0,0,.03); }
   label { display:block; margin:8px 0 4px; font-weight:600; }
-  input[type="text"], select { width:100%; box-sizing:border-box; font-size:16px; padding:10px 12px; border:1px solid #ccc;
+  input[type="text"], input[type="file"], select { width:100%; box-sizing:border-box; font-size:16px; padding:10px 12px; border:1px solid #ccc;
                                border-radius:8px; background:#fff; }
   .row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
   .row-3 { display:grid; grid-template-columns:2fr 2fr 1.4fr; gap:12px; }
@@ -51,6 +51,7 @@
       <option value="副詞">副詞</option>
       <option value="chunk">chunk</option>
       <option value="言い回し">言い回し</option>
+      <option value="相槌">相槌</option>
       <option value="接続詞">接続詞</option>
       <option value="phrase">phrase</option>
     </select>
@@ -84,6 +85,7 @@
         <option value="副詞">副詞</option>
         <option value="chunk">chunk</option>
         <option value="言い回し">言い回し</option>
+        <option value="相槌">相槌</option>
         <option value="接続詞">接続詞</option>
         <option value="phrase">phrase</option>
       </select>
@@ -100,6 +102,32 @@
     </label>
 
     <span id="addMsg" class="muted"></span>
+  </div>
+</div>
+
+<!-- データインポート -->
+<div class="card">
+  <h2>データインポート</h2>
+  <div class="row">
+    <div>
+      <label for="importFile">ファイルを選択（JSON / CSV）</label>
+      <input id="importFile" type="file" accept=".json,.csv,application/json,text/csv">
+    </div>
+    <div>
+      <label for="importMode">取り込み方法</label>
+      <select id="importMode">
+        <option value="append">既存データに追加</option>
+        <option value="replace">既存データを上書き</option>
+      </select>
+    </div>
+  </div>
+  <div class="controls" style="margin-top:10px;">
+    <button id="importBtn" class="btn-primary">インポートする</button>
+    <span id="importMsg" class="muted"></span>
+  </div>
+  <div class="muted" style="margin-top:8px; line-height:1.6;">
+    JSON形式：[{"word":"That's cool","meaning":"それいいね","type":"相槌"}]<br>
+    CSV形式：1行目を word,meaning,type または 英語,日本語,品詞 にしてください
   </div>
 </div>
 
@@ -128,15 +156,11 @@
         <option value="副詞">副詞</option>
         <option value="chunk">chunk</option>
         <option value="言い回し">言い回し</option>
+        <option value="相槌">相槌</option>
         <option value="接続詞">接続詞</option>
         <option value="phrase">phrase</option>
       </select>
     </div>
-  </div>
-
-  <div class="controls" style="margin:10px 0;">
-    <button id="clearAllBtn" class="btn-danger">すべて削除（初期データに戻す）</button>
-    <span class="muted">※取り消し不可。必要なら事前にバックアップしてください。</span>
   </div>
 
   <div style="overflow:auto;">
@@ -155,109 +179,8 @@
 </div>
 
 <script>
-// ====== 初期データ ======
-const SEED = [
-  { word: "roughly", meaning: "だいたい", type: "副詞" },
-  { word: "thirtyish", meaning: "30くらい", type: "形容詞" },
-  { word: "late-fourties", meaning: "40代後半", type: "形容詞" },
-  { word: "tallish", meaning: "とても高い", type: "形容詞" },
-  { word: "outgoing", meaning: "社交的", type: "形容詞" },
-  { word: "attractive", meaning: "魅力的", type: "形容詞" },
-  { word: "chubby", meaning: "ぽっちゃり", type: "形容詞" },
-  { word: "vary", meaning: "多様に変化する", type: "動詞" },
-  { word: "tolerate", meaning: "許容する", type: "動詞" },
-  { word: "high tolerance", meaning: "高い耐性", type: "名詞" },
-  { word: "precision", meaning: "正確さ", type: "名詞" },
-  { word: "directness", meaning: "率直さ", type: "名詞" },
-  { word: "intercultural", meaning: "異文化間の", type: "形容詞" },
-  { word: "norm", meaning: "典型、規範", type: "名詞" },
-  { word: "awareness", meaning: "自覚、気づき", type: "名詞" },
-  { word: "weigh up pros and cons of", meaning: "メリデメを比較検討する", type: "動詞" },
-  { word: "talk A through B", meaning: "AにBを一通り説明する", type: "動詞" },
-  { word: "You probably won't like this idea but", meaning: "この案は気に食わないだろうけど", type: "chunk" },
-  { word: "get on to", meaning: "～の話題に入る", type: "動詞" },
-  { word: "underlying causes", meaning: "根本原因", type: "名詞" },
-  { word: "affect", meaning: "～に影響している", type: "動詞" },
-  { word: "There's no getting away form it", meaning: "それは逃れられないことだ", type: "chunk" },
-  { word: "attract", meaning: "惹きつける", type: "動詞" },
-  { word: "Could I just say something here?", meaning: "ちょっといいですか？", type: "chunk" },
-  { word: "obvious", meaning: "明らかな", type: "形容詞" },
-  { word: "Apart form anything else", meaning: "何はともあれ", type: "chunk" },
-  { word: "Can I suggest we come back to this point a bit later on?", meaning: "この話題は後で戻ってくる形でお願い", type: "chunk" },
-  { word: "Either's fine.", meaning: "どっちでも大丈夫だよ", type: "chunk" },
-  { word: "Enthusiasm", meaning: "熱意", type: "名詞" },
-  { word: "bounce around new ideas", meaning: "新しいアイディアをあれこれ考える", type: "言い回し" },
-  { word: "look beyond mistakes", meaning: "失敗の先を思い描く", type: "言い回し" },
-  { word: "hit on a new idea", meaning: "新しいアイディアが浮かぶ", type: "言い回し" },
-  { word: "come up with a new idea", meaning: "新しいアイディアが浮かぶ", type: "言い回し" },
-  { word: "run into difficulty success waned", meaning: "成功率を下げる困難に直面する", type: "言い回し" },
-  { word: "try things out", meaning: "（実験的に）試してみる", type: "言い回し" },
-  { word: "figure out", meaning: "探し出す", type: "言い回し" },
-  { word: "cut into the bottom line", meaning: "最終的な利益を減らす", type: "言い回し" },
-  { word: "undergo change", meaning: "変化する、移り変わる", type: "言い回し" },
-  { word: "shift emphasis to/from", meaning: "力点を移す、転換する", type: "言い回し" },
-  { word: "boost earnings", meaning: "利益を押し上げる", type: "言い回し" },
-  { word: "tolerate mistakes", meaning: "失敗を容認する（寛容に接する）", type: "言い回し" },
-  { word: "cause stir", meaning: "センセーション・騒ぎを巻き起こす", type: "言い回し" },
-  { word: "control costs", meaning: "コストをコントロールする", type: "言い回し" },
-  { word: "outperform competition", meaning: "競合に勝つ", type: "言い回し" },
-  { word: "outperform expectation", meaning: "期待を上回る", type: "言い回し" },
-  { word: "reignite", meaning: "再燃させる", type: "言い回し" },
-  { word: "get in the way of real invention", meaning: "本当の発明の妨げになる", type: "言い回し" },
-  { word: "address employee dissatisfaction", meaning: "従業員の不満に本気で取組む", type: "言い回し" },
-  { word: "fuse corporate culture and practice", meaning: "企業文化と企業活動を融和させる", type: "言い回し" },
-  { word: "after observing their approach", meaning: "彼らのアプローチを観察した上で", type: "言い回し" },
-  { word: "come to fruition", meaning: "実を結ぶ", type: "言い回し" },
-  { word: "get off the ground", meaning: "動き出す、始動する", type: "言い回し" },
-  { word: "get back on track", meaning: "再び軌道に乗る", type: "言い回し" },
-  { word: "think outside the box", meaning: "型にはまらずに考える", type: "言い回し" },
-  { word: "fall by the wayside", meaning: "途中で挫折する", type: "言い回し" },
-  { word: "stay ahead of the game", meaning: "有利な状態を継続する", type: "言い回し" },
-  { word: "vary depending on", meaning: "によって変化する", type: "言い回し" },
-  { word: "dissonance", meaning: "不協和音", type: "名詞" },
-  { word: "As such,", meaning: "そういうわけで", type: "言い回し" },
-  { word: "point to", meaning: "を示している", type: "動詞" },
-  { word: "take into account", meaning: "考慮する", type: "動詞" },
-  { word: "emphasis on extreme precision", meaning: "極端に精度に力点を置くこと", type: "言い回し" },
-  { word: "interfere with their operation", meaning: "オペレーションを妨げる", type: "言い回し" },
-  { word: "result in", meaning: "に繋がる", type: "動詞" },
-  { word: "lean", meaning: "引き締まった、無駄のない", type: "形容詞" },
-  { word: "stifle creativity", meaning: "創造性を殺す", type: "言い回し" },
-  { word: "go down the rabbit hole", meaning: "泥沼にハマる", type: "言い回し" },
-  { word: "desire for approval", meaning: "承認欲求", type: "名詞" },
-  { word: "phony", meaning: "ニセモノ（=fake）", type: "名詞" },
-  { word: "be in the moment", meaning: "没頭する", type: "言い回し" },
-  { word: "ball and chain", meaning: "足かせ", type: "名詞" },
-  { word: "stay in touch", meaning: "連絡を取り合う", type: "動詞" },
-  { word: "collocate", meaning: "並べる", type: "動詞" },
-  { word: "tidy up", meaning: "片づける", type: "動詞" },
-  { word: "messy", meaning: "散らかっている", type: "形容詞" },
-  { word: "butter someone up", meaning: "お世辞を言う、おだてる", type: "動詞" },
-  { word: "absenteeism", meaning: "常習欠勤", type: "名詞" },
-  { word: "presenteeism", meaning: "病気でも出勤しちゃう状態", type: "名詞" },
-  { word: "controversial", meaning: "物議を醸す", type: "形容詞" },
-  { word: "chuckle", meaning: "くすくす笑いする", type: "動詞" },
-  { word: "guffaw", meaning: "大笑いする", type: "動詞" },
-  { word: "synonym", meaning: "同義語", type: "名詞" },
-  { word: "Ferris wheel", meaning: "観覧車", type: "名詞" },
-  { word: "nevertheless", meaning: "しかしながら（=However）", type: "接続詞" },
-  { word: "amphibian", meaning: "両生類", type: "名詞" },
-  { word: "astronaut", meaning: "宇宙飛行士", type: "名詞" },
-  { word: "a blessing in disguise", meaning: "不幸中の幸い", type: "言い回し" },
-  { word: "genuinely", meaning: "本当に", type: "副詞" },
-  { word: "charitable", meaning: "慈善的な", type: "形容詞" },
-  { word: "hypocritical", meaning: "偽善的な", type: "形容詞" },
-  { word: "sporadic", meaning: "散発的な", type: "形容詞" },
-  { word: "realistically", meaning: "現実的には", type: "副詞" },
-  { word: "obsolete", meaning: "時代遅れの、廃れた", type: "形容詞" },
-  { word: "I should also say that", meaning: "と私も言わせていただく", type: "言い回し" },
-  { word: "move into the area of", meaning: "の領域に進出する", type: "言い回し" },
-  { word: "We'd pay to make sure", meaning: "～を確実するためにお金を使う", type: "言い回し" },
-  { word: "it's well-run", meaning: "うまく運営される", type: "言い回し" },
-  { word: "I can't help wondering whether", meaning: "～かどうかを疑わざるをえない", type: "言い回し" },
-  { word: "We'd need to do a lot more research", meaning: "もっと多くの～が必要である", type: "言い回し" },
-  { word: "Can you be more specific?", meaning: "もっと具体的にお願いします", type: "言い回し" },
-];
+// ====== 初期データ（クラウド運用：空） ======
+const SEED = []; // クラウドのみ運用のため空配列
 
 const LS_KEY = "vocab_words_v1";
 
@@ -299,7 +222,11 @@ const addMsg = document.getElementById("addMsg");
 const listBody = document.getElementById("listBody");
 const searchInput = document.getElementById("searchInput");
 const listFilter = document.getElementById("listFilter");
-const clearAllBtn = document.getElementById("clearAllBtn");
+
+const importFile = document.getElementById("importFile");
+const importMode = document.getElementById("importMode");
+const importBtn = document.getElementById("importBtn");
+const importMsg = document.getElementById("importMsg");
 
 // ====== 出題系 ======
 function pickRandom(list) {
@@ -375,6 +302,126 @@ function applyListFilter() {
     (w.meaning || "").includes(searchInput.value)
   );
   renderList(data);
+}
+
+// ====== データインポート ======
+function parseCsv(text) {
+  const rows = [];
+  let row = [];
+  let cell = "";
+  let inQuotes = false;
+
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if (ch === '"') {
+      if (inQuotes && text[i + 1] === '"') {
+        cell += '"';
+        i++;
+      } else {
+        inQuotes = !inQuotes;
+      }
+    } else if (ch === ',' && !inQuotes) {
+      row.push(cell);
+      cell = "";
+    } else if ((ch === '\n' || ch === '\r') && !inQuotes) {
+      if (ch === '\r' && text[i + 1] === '\n') i++;
+      row.push(cell);
+      if (row.some(v => v.trim() !== "")) rows.push(row);
+      row = [];
+      cell = "";
+    } else {
+      cell += ch;
+    }
+  }
+  row.push(cell);
+  if (row.some(v => v.trim() !== "")) rows.push(row);
+  return rows;
+}
+
+function normalizeImportedItem(item) {
+  if (!item || typeof item !== "object") return null;
+  const word = String(item.word ?? item.en ?? item.english ?? item["英語"] ?? "").trim();
+  const meaning = String(item.meaning ?? item.jp ?? item.japanese ?? item["日本語"] ?? "").trim();
+  const type = String(item.type ?? item.partOfSpeech ?? item["品詞"] ?? "").trim();
+  if (!word || !meaning || !type) return null;
+  return { word, meaning, type };
+}
+
+function csvToItems(text) {
+  const rows = parseCsv(text.replace(/^\uFEFF/, ""));
+  if (rows.length === 0) return [];
+
+  const normalizedHeader = rows[0].map(v => v.trim().toLowerCase());
+  const aliases = {
+    word: ["word", "en", "english", "英語"],
+    meaning: ["meaning", "jp", "japanese", "日本語"],
+    type: ["type", "partofspeech", "part_of_speech", "品詞"]
+  };
+  const findIndex = names => normalizedHeader.findIndex(h => names.includes(h));
+  const wordIndex = findIndex(aliases.word);
+  const meaningIndex = findIndex(aliases.meaning);
+  const typeIndex = findIndex(aliases.type);
+  const hasHeader = wordIndex >= 0 && meaningIndex >= 0 && typeIndex >= 0;
+  const dataRows = hasHeader ? rows.slice(1) : rows;
+
+  return dataRows.map(cols => normalizeImportedItem({
+    word: cols[hasHeader ? wordIndex : 0],
+    meaning: cols[hasHeader ? meaningIndex : 1],
+    type: cols[hasHeader ? typeIndex : 2]
+  })).filter(Boolean);
+}
+
+async function importData() {
+  const file = importFile.files?.[0];
+  if (!file) {
+    importMsg.textContent = "ファイルを選択してください";
+    return;
+  }
+
+  try {
+    const text = await file.text();
+    let imported = [];
+    const isJson = file.name.toLowerCase().endsWith(".json") || file.type.includes("json");
+
+    if (isJson) {
+      const parsed = JSON.parse(text.replace(/^\uFEFF/, ""));
+      if (!Array.isArray(parsed)) throw new Error("JSONの最上位は配列にしてください");
+      imported = parsed.map(normalizeImportedItem).filter(Boolean);
+    } else {
+      imported = csvToItems(text);
+    }
+
+    if (imported.length === 0) throw new Error("取り込めるデータがありません");
+
+    if (importMode.value === "replace") {
+      if (!confirm(`現在のデータを削除して、${imported.length}件で上書きしますか？`)) return;
+      words = imported;
+      importMsg.textContent = `${imported.length}件を上書きしました`;
+    } else {
+      let added = 0;
+      let skipped = 0;
+      const existing = new Set(words.map(makeKey));
+      imported.forEach(item => {
+        const key = makeKey(item);
+        if (existing.has(key)) {
+          skipped++;
+        } else {
+          words.push(item);
+          existing.add(key);
+          added++;
+        }
+      });
+      importMsg.textContent = `${added}件を追加しました（重複${skipped}件を除外）`;
+    }
+
+    saveWords(words);
+    applyQuizFilter();
+    applyListFilter();
+    importFile.value = "";
+    scheduleCloudSave();
+  } catch (e) {
+    importMsg.textContent = "インポートに失敗しました：" + e.message;
+  }
 }
 
 // ====== 自動クラウド保存（デバウンス） ======
@@ -492,14 +539,26 @@ function deleteEntry(item) {
   }
 }
 
-// ====== すべて削除（初期化） ======
-function clearAll() {
-  if (!confirm("すべての登録データを削除して初期データに戻します。よろしいですか？")) return;
-  words = [...SEED];
-  saveWords(words);
+/* ====== 起動時：クラウド自動読み込み（失敗時はローカル/空のまま） ====== */
+async function tryLoadFromCloudAtBoot() {
+  try {
+    const url = "https://raw.githubusercontent.com/kuribay14-web/Tango_apps2/main/data.json?ts=" + Date.now();
+    const res = await fetch(url);
+    if (!res.ok) return false;
+    const data = await res.json();
+    if (!Array.isArray(data)) return false;
+    words = data;
+    saveWords(words);
+    document.getElementById("cloudMsg").textContent = "☁️ 起動時にクラウドから同期しました";
+    return true;
+  } catch (_) {
+    return false;
+  }
+}
+async function boot() {
+  await tryLoadFromCloudAtBoot();  // 成否に関わらず続行
   applyQuizFilter();
-  applyListFilter();
-  scheduleCloudSave(); // 初期化後も自動保存
+  renderList();
 }
 
 // ====== イベント紐付け ======
@@ -514,11 +573,10 @@ filterEl.addEventListener("change", applyQuizFilter);
 addBtn.addEventListener("click", addOrUpdateEntry);
 searchInput.addEventListener("input", applyListFilter);
 listFilter.addEventListener("change", applyListFilter);
-clearAllBtn.addEventListener("click", clearAll);
+importBtn.addEventListener("click", importData);
 
-// ====== 初期表示 ======
-applyQuizFilter();
-renderList();
+// ====== 初期表示（起動） ======
+boot();
 </script>
 
 <script>
@@ -539,7 +597,7 @@ async function saveToCloud() {
   }
 }
 
-// クラウド読み込み機能
+// クラウド読み込み機能（手動同期）
 async function loadFromCloud() {
   try {
     const url = "https://raw.githubusercontent.com/kuribay14-web/Tango_apps2/main/data.json?ts=" + Date.now();
