@@ -1483,5 +1483,25 @@
     "word": "I'll let you know when it happens",
     "meaning": "それが起きたら知らせます",
     "type": "phrase"
+  },
+  {
+    "word": "That means that...",
+    "meaning": "つまり〜ということです",
+    "type": "phrase"
+  },
+  {
+    "word": "Let me confirm, just to make sure",
+    "meaning": "念のため確認させてください",
+    "type": "phrase"
+  },
+  {
+    "word": "Let me check again, just in case",
+    "meaning": "念のため、もう一度確認させてください",
+    "type": "phrase"
+  },
+  {
+    "word": "What's it called?",
+    "meaning": "それは何と呼ばれていますか？／名前は何ですか？",
+    "type": "phrase"
   }
 ]
